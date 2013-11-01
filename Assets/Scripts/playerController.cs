@@ -4,10 +4,14 @@ using System.Collections;
 public class playerController : MonoBehaviour {
 	public float speed_ = 10;
 	public float rotationSpeed_ = 180;
+	private UISlider _life;
+	public float _curHp = 80;
+	public float _maxHp = 100;
 	
 	// Use this for initialization
 	void Start () {
 		animation.CrossFade("idle");
+		_life = gameObject.GetComponentInChildren<UISlider>();
 	}
 	
 	private void update_animation()
@@ -53,10 +57,31 @@ public class playerController : MonoBehaviour {
 		this.update_animation();
 	}
 	
+	// Updates lifebar
+	protected void UpdateLife()
+	{
+		if (_life)
+		{
+			_life.transform.position = new Vector3(transform.position.x - 0.5f,
+									transform.position.y + 1.85f,
+									transform.position.z + 0.3f);
+    		_life.transform.rotation = Camera.main.transform.rotation;
+			
+			
+			
+			//_life.transform.LookAt(Camera.main.transform);
+			Vector3 posTmp = _life.transform.eulerAngles;
+			posTmp.z = 190;
+			//_life.transform.eulerAngles = posTmp;
+			
+			_life.sliderValue = (float)(_curHp / _maxHp);
+		}
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		this.update_move();
-		
+		UpdateLife();
 		float fire = Input.GetAxis("Fire1");
 		
 		if (Mathf.Abs(fire) > 0.5)
