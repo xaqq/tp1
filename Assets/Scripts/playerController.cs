@@ -28,9 +28,9 @@ public class playerController : MonoBehaviour {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	private void update_move()
+	{
+			
 		float vertical = Input.GetAxis ("Vertical");
 		float horizontal = Input.GetAxis ("Horizontal");
 		
@@ -51,5 +51,15 @@ public class playerController : MonoBehaviour {
 		animation["run"].speed = Mathf.Sqrt(Mathf.Pow(vertical, 2) + Mathf.Pow(horizontal, 2));
 		print (animation["run"].speed);
 		this.update_animation();
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		this.update_move();
+		
+		float fire = Input.GetAxis("Fire1");
+		
+		if (Mathf.Abs(fire) > 0.5)
+			animation.CrossFade("attack01");
 	}
 }
