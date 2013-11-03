@@ -53,7 +53,7 @@ public class playerController : MonoBehaviour {
 		// Rotate around our y-axis
 		transform.Rotate (0, rotation, 0);
 		animation["run"].speed = Mathf.Sqrt(Mathf.Pow(vertical, 2) + Mathf.Pow(horizontal, 2));
-		print (animation["run"].speed);
+		//print (animation["run"].speed);
 		this.update_animation();
 	}
 	
