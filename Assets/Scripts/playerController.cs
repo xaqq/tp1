@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour {
 	private UISlider _life;
 	public float _curHp = 80;
 	public float _maxHp = 100;
+	public Transform arrow;
 	
 	// Use this for initialization
 	void Start () {
@@ -53,7 +54,6 @@ public class playerController : MonoBehaviour {
 		// Rotate around our y-axis
 		transform.Rotate (0, rotation, 0);
 		animation["run"].speed = Mathf.Sqrt(Mathf.Pow(vertical, 2) + Mathf.Pow(horizontal, 2));
-		print (animation["run"].speed);
 		this.update_animation();
 	}
 	
@@ -78,6 +78,18 @@ public class playerController : MonoBehaviour {
 		}
 	}
 	
+	void fire()
+	{
+		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit)){
+			print ("OK");
+			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation));
+			o.transform.LookAt(hit.point);
+		}
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		this.update_move();
@@ -85,6 +97,9 @@ public class playerController : MonoBehaviour {
 		float fire = Input.GetAxis("Fire1");
 		
 		if (Mathf.Abs(fire) > 0.5)
+		{
+			this.fire();
 			animation.CrossFade("attack01");
-	}
+		}
+		}
 }
