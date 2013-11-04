@@ -90,13 +90,6 @@ public class playerController : MonoBehaviour {
 									transform.position.z + 0.3f);
     		_life.transform.rotation = Camera.main.transform.rotation;
 			
-			
-			
-			//_life.transform.LookAt(Camera.main.transform);
-			Vector3 posTmp = _life.transform.eulerAngles;
-			posTmp.z = 190;
-			//_life.transform.eulerAngles = posTmp;
-			
 			_life.sliderValue = (float)(_curHp / _maxHp);
 		}
 	}
@@ -187,15 +180,15 @@ public class playerController : MonoBehaviour {
 			this.update_move();
 		}
 		
-		UpdateLife();
 		if (!_isAttacking)
 		{
-		float fire = Input.GetAxis("Fire1");
+			float fire = Input.GetAxis("Fire1");
 		
-		if (Mathf.Abs(fire) > 0.5)
-		{
-			this.fire();
+			if (Mathf.Abs(fire) > 0.5)
+			{
+				this.fire();
+			}
 		}
-		}
-		}
+		UpdateLife();
+	}
 }
