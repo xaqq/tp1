@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class playerController : MonoBehaviour {
+	public GameObject _hud;
 	public float speed_ = 4;
 	public float rotationSpeed_ = 180;
-	private UISlider _life;
+	public UISlider _life;
+	public UISlider _mana;
 	private UILabel _name;
 	public float _curHp = 80;
 	public float _maxHp = 100;
@@ -23,7 +25,6 @@ public class playerController : MonoBehaviour {
 	void Start () {
 		animation["attack01"].speed = 4.0f;
 		animation.CrossFade("idle");
-		_life = gameObject.GetComponentInChildren<UISlider>();
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
 	}
@@ -83,14 +84,20 @@ public class playerController : MonoBehaviour {
 	// Updates lifebar
 	protected void UpdateLife()
 	{
+		if (_hud)
+		{
+			_hud.transform.position = new Vector3(transform.position.x + 0.2f,
+									transform.position.y + 1.65f,
+									transform.position.z + 0.3f);
+    		_hud.transform.rotation = Camera.main.transform.rotation;
+		}
 		if (_life)
 		{
-			_life.transform.position = new Vector3(transform.position.x - 0.5f,
-									transform.position.y + 1.85f,
-									transform.position.z + 0.3f);
-    		_life.transform.rotation = Camera.main.transform.rotation;
-			
 			_life.sliderValue = (float)(_curHp / _maxHp);
+		}
+		if (_mana)
+		{
+			_mana.sliderValue = (float)(_curMp / _maxMp);
 		}
 	}
 	
