@@ -8,14 +8,27 @@ public class playerController : MonoBehaviour {
 	private UILabel _name;
 	public float _curHp = 80;
 	public float _maxHp = 100;
+	private bool _isAttacking = false;
+	private Vector3 _clickingPosition;
+	private Vector3 _startRotation;
+	private Vector3 _endRotation;
+	private float _currentRotationTime = 0;
 	public Transform arrow;
 	
 	// Use this for initialization
 	void Start () {
+		animation["attack01"].speed = 4.0f;
 		animation.CrossFade("idle");
 		_life = gameObject.GetComponentInChildren<UISlider>();
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
+	}
+	
+	public void hurt(int damage)
+	{
+		_curHp -= damage;
+		if (_curHp <= 0)
+			Destroy(gameObject);
 	}
 	
 	private void update_animation()
@@ -87,22 +100,63 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
-			print ("OK");
-			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation);
-			o.transform.LookAt(hit.point);
+			_isAttacking = true;
+			_clickingPosition = hit.point;
+			_currentRotationTime = 0.0f;
+			_startRotation = transform.eulerAngles;
+			transform.LookAt(_clickingPosition);
+			_endRotation = transform.eulerAngles;
+			_endRotation.x = 0;
+			_endRotation.z = 0;
+			transform.eulerAngles = _startRotation;
+			_startRotation.x = 0;
+			_startRotation.z = 0;
+			if (Mathf.Abs(_startRotation.y + 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
+				_startRotation.y += 360;
+			if (Mathf.Abs(_startRotation.y - 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
+				_startRotation.y -= 360;
+			_currentRotationTime = 0;
 		}
+	}
+	
+	void attack()
+	{
+		GameObject o = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Arrow"));
+		Vector3 temp = transform.position;
+		temp.y = 1;
+			o.transform.position = temp;
+			o.transform.LookAt(_clickingPosition);
+			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		this.update_move();
+		rigidbody.velocity = Vector3.zero;
+		if (_isAttacking)
+		{
+			_currentRotationTime += Time.deltaTime * 1000;
+			animation.CrossFade("attack01");
+			transform.eulerAngles = Vector3.Lerp(_startRotation, _endRotation, _currentRotationTime / 500);
+			if (_currentRotationTime > 500.0f)
+			{
+				_isAttacking = false;
+				attack();
+			}
+		}
+		else
+		{
+			this.update_move();
+		}
 		UpdateLife();
+		if (!_isAttacking)
+		{
 		float fire = Input.GetAxis("Fire1");
 		
 		if (Mathf.Abs(fire) > 0.5)
 		{
 			this.fire();
 			animation.CrossFade("attack01");
+		}
 		}
 		}
 }
