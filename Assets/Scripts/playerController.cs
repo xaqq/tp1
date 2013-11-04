@@ -107,8 +107,10 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
+			print (hit.collider.gameObject.name);
 			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
 			{
+				print(_isClicked);
 				_isClicked = true;
 				_click = hit.point;
 				_click.y = transform.position.y;
