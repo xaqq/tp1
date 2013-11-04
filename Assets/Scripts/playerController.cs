@@ -5,6 +5,7 @@ public class playerController : MonoBehaviour {
 	public float speed_ = 10;
 	public float rotationSpeed_ = 180;
 	private UISlider _life;
+	private UILabel _name;
 	public float _curHp = 80;
 	public float _maxHp = 100;
 	public Transform arrow;
@@ -13,6 +14,8 @@ public class playerController : MonoBehaviour {
 	void Start () {
 		animation.CrossFade("idle");
 		_life = gameObject.GetComponentInChildren<UISlider>();
+		_name = _life.GetComponentInChildren<UILabel>();
+		_name.text = PlayerPrefs.GetString("Pseudo");
 	}
 	
 	private void update_animation()
@@ -85,7 +88,7 @@ public class playerController : MonoBehaviour {
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
 			print ("OK");
-			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation));
+			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation);
 			o.transform.LookAt(hit.point);
 		}
 	}
