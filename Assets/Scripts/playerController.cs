@@ -85,7 +85,7 @@ public class playerController : MonoBehaviour {
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
 			print ("OK");
-			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation));
+			GameObject o = (GameObject)GameObject.Instantiate(arrow.gameObject, transform.position, transform.rotation);
 			o.transform.LookAt(hit.point);
 		}
 	}
