@@ -2,18 +2,22 @@
 using System.Collections;
 
 public class playerController : MonoBehaviour {
-	public float speed_ = 10;
+	public float speed_ = 4;
 	public float rotationSpeed_ = 180;
 	private UISlider _life;
 	private UILabel _name;
 	public float _curHp = 80;
 	public float _maxHp = 100;
+	public float _curMp = 90;
+	public float _maxMp = 100;
 	private bool _isAttacking = false;
 	private Vector3 _clickingPosition;
 	private Vector3 _startRotation;
 	private Vector3 _endRotation;
 	private float _currentRotationTime = 0;
 	public Transform arrow;
+	private Vector3 _click = Vector3.zero;
+	private bool _isClicked = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -51,10 +55,13 @@ public class playerController : MonoBehaviour {
 	
 	private void update_move()
 	{
-			
 		float vertical = Input.GetAxis ("Vertical");
 		float horizontal = Input.GetAxis ("Horizontal");
 		
+		if (Mathf.Abs (vertical) > 0.1 || Mathf.Abs (horizontal) > 0.1)
+		{
+			_isClicked = false;
+		}
 		// Get the horizontal and vertical axis.
 		// By default they are mapped to the arrow keys.
 		// The value is in the range -1 to 1
@@ -100,6 +107,16 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
+			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
+			{
+				_isClicked = true;
+				_click = hit.point;
+				_click.y = transform.position.y;
+				transform.LookAt(_click);
+			}
+			else
+			{
+			animation.CrossFade("attack01");
 			_isAttacking = true;
 			_clickingPosition = hit.point;
 			_currentRotationTime = 0.0f;
@@ -116,6 +133,7 @@ public class playerController : MonoBehaviour {
 			if (Mathf.Abs(_startRotation.y - 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
 				_startRotation.y -= 360;
 			_currentRotationTime = 0;
+			}
 		}
 	}
 	
@@ -143,10 +161,30 @@ public class playerController : MonoBehaviour {
 				attack();
 			}
 		}
+		else if (_isClicked)
+		{
+			if ((_click - transform.position).magnitude <= speed_ * Time.deltaTime)
+			{
+				transform.position = _click;
+				_isClicked = false;
+				if (Random.Range(0, 100) < 50)
+					animation.CrossFade("idle");
+				else 
+					animation.CrossFade("idle_alt");
+			}
+			else
+			{
+				animation["run"].speed = 1.0f;
+				animation.CrossFade("run");
+				transform.LookAt(_click);
+				transform.Translate(Vector3.forward * speed_ * Time.deltaTime);
+			}
+		}
 		else
 		{
 			this.update_move();
 		}
+		
 		UpdateLife();
 		if (!_isAttacking)
 		{
@@ -155,7 +193,6 @@ public class playerController : MonoBehaviour {
 		if (Mathf.Abs(fire) > 0.5)
 		{
 			this.fire();
-			animation.CrossFade("attack01");
 		}
 		}
 		}
