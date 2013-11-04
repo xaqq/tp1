@@ -149,6 +149,33 @@ public class playerController : MonoBehaviour {
 			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
 	}
 	
+	void teleport()
+	{
+		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit)){
+			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
+			{
+				Vector3 pos = hit.point;
+				pos.y = transform.position.y + 1;
+				Vector3 charpos = transform.position;
+				charpos.y += 1;
+				Ray newray = new Ray(charpos, pos - charpos);
+				if (Physics.Raycast(newray, out hit, (pos - charpos).magnitude))
+				{
+					print (ray);
+					print (hit.distance);
+					print (hit.transform.name);
+					return ;
+				}
+				pos.y -= 1;
+				transform.position = pos;
+			}
+		}
+		
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		rigidbody.velocity = Vector3.zero;
@@ -189,11 +216,24 @@ public class playerController : MonoBehaviour {
 		
 		if (!_isAttacking)
 		{
-			float fire = Input.GetAxis("Fire1");
-		
-			if (Mathf.Abs(fire) > 0.5)
+			if (Input.GetKeyDown (KeyCode.Alpha3))
 			{
-				this.fire();
+				teleport();
+			}
+			else if (Input.GetKeyDown (KeyCode.Alpha2))
+			{
+				
+			}
+			else if (Input.GetKeyDown (KeyCode.Alpha1))
+			{
+			}
+			else
+			{		
+				float fire = Input.GetAxis("Fire1");
+				if (Mathf.Abs(fire) > 0.5)
+				{
+					this.fire();
+				}
 			}
 		}
 		UpdateLife();
