@@ -23,11 +23,11 @@ public class MenuHandler : MonoBehaviour {
 	
 	void OnSubmit(GameObject go)
 	{
-		print ("HUEHUEHUEHUEHUEHUEUHUUHEUH");
 		if (_pseudo.GetComponent<UIInput>().text != "" && _pseudo.GetComponent<UIInput>().text != "pseudo")
 		{
 			_launchGame = true;
 			_door.animation.CrossFade("Take 001");
+			PlayerPrefs.SetString("Pseudo", _pseudo.GetComponent<UIInput>().text);
 		}
 	}
 }

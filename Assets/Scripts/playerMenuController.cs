@@ -10,8 +10,5 @@ public class playerMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float fire = Input.GetAxis("Fire1");
-		if (Mathf.Abs(fire) > 0.5)
-			animation.CrossFade("attack01");
 	}
 }
