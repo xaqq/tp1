@@ -8,9 +8,9 @@ public class playerController : MonoBehaviour {
 	public UISlider _life;
 	public UISlider _mana;
 	private UILabel _name;
-	public float _curHp = 80;
+	public float _curHp = 100;
 	public float _maxHp = 100;
-	public float _curMp = 90;
+	public float _curMp = 100;
 	public float _maxMp = 100;
 	private bool _isAttacking = false;
 	private Vector3 _clickingPosition;

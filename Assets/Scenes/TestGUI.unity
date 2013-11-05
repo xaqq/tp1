@@ -6583,6 +6583,10 @@ Prefab:
       propertyPath: mMat
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 98212f9fe1b734496a7edfddebbabb3d, type: 2}
+      propertyPath: _curMp
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98212f9fe1b734496a7edfddebbabb3d, type: 2}
   m_RootGameObject: {fileID: 2068585885}
@@ -8345,7 +8349,7 @@ MonoBehaviour:
   _mana: {fileID: 267712546}
   _curHp: 100
   _maxHp: 100
-  _curMp: 90
+  _curMp: 100
   _maxMp: 100
   arrow: {fileID: 0}
   ManaRegenerationOver5Seconds: 10
@@ -8543,6 +8547,8 @@ MonoBehaviour:
   _snare: {fileID: 563887143}
   _blink: {fileID: 246482718}
   _heal: {fileID: 464909768}
+  _reset: {fileID: 345895127}
+  _quit: {fileID: 77492950}
   _lifeLabel: {fileID: 1362094467}
   _manaLabel: {fileID: 1295821595}
   _time: {fileID: 1126681294}

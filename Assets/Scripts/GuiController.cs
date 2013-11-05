@@ -10,6 +10,8 @@ public class GuiController : MonoBehaviour {
 	public GameObject _snare;
 	public GameObject _blink;
 	public GameObject _heal;
+	public GameObject _reset;
+	public GameObject _quit;
 	public UILabel _lifeLabel;
 	public UILabel _manaLabel;
 	public UILabel _time;
@@ -27,6 +29,8 @@ public class GuiController : MonoBehaviour {
 		UIEventListener.Get(_blink).onHover += OnHoverBlink;
 		UIEventListener.Get(_heal).onHover += OnHoverHeal;
 		UIEventListener.Get(_menu).onClick += OnClickMenu;
+		UIEventListener.Get(_quit).onClick += OnClickQuit;
+		UIEventListener.Get(_reset).onClick += OnClickReset;
 	}
 	// Use this for initialization
 	void Start () {
@@ -47,6 +51,15 @@ public class GuiController : MonoBehaviour {
 			_menuIG.SetActiveRecursively(true);
 	}
 	
+	void OnClickReset(GameObject go)
+	{
+		Application.LoadLevel(1);
+	}
+	
+	void OnClickQuit(GameObject go)
+	{
+		Application.Quit();
+	}
 	
 	void OnHoverInfo(GameObject _obj, bool pressed)
 	{
