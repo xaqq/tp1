@@ -22,18 +22,17 @@ public class playerController : MonoBehaviour {
 	private bool _isClicked = false;
 	private bool _isFA = false;
 	public float ManaRegenerationOver5Seconds = 10;
-	private int _nbMonsterKilled = 1;
+	
+	void Awake() {
+		PlayerPrefs.SetInt("NbMonstre", 0);
+	}
+	
 	// Use this for initialization
 	void Start () {
 		animation["attack01"].speed = 4.0f;
 		animation.CrossFade("idle");
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
-	}
-	
-	public int getNbMonsterKilled()
-	{
-		return _nbMonsterKilled;
 	}
 	
 	public void hurt(int damage)
@@ -212,6 +211,19 @@ public class playerController : MonoBehaviour {
 		}
 	}
 	
+	void heal()
+	{
+		if (_curHp != _maxHp)
+		{
+			_curHp += 20;
+			if (_curHp > _maxHp)
+			{
+				_curHp = _maxHp;
+			}
+			_curMp -= 20;
+		}
+	}
+	
 	void teleport()
 	{
 		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -289,6 +301,10 @@ public class playerController : MonoBehaviour {
 			else if (Input.GetKeyDown (KeyCode.Alpha1) && _curMp >= 10)
 			{
 				fireFA();
+			}
+			else if (Input.GetKeyDown (KeyCode.H) && _curMp >= 20)
+			{
+				heal();
 			}
 			else
 			{		

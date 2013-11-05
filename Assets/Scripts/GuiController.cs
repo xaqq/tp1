@@ -130,7 +130,7 @@ public class GuiController : MonoBehaviour {
 	{
 		_tmpTime = System.DateTime.Now;
 		_time.text = _tmpTime.Hour.ToString() + ":" + _tmpTime.Minute.ToString();
-		_nbMonster.text = _playerController.getNbMonsterKilled().ToString();
+		_nbMonster.text = PlayerPrefs.GetInt("NbMonstre").ToString();
 	}
 	
 	void UpdateBottomMenu()

@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class MonsterScript : MonoBehaviour {
-	private playerController _target = null;
+	private playerController _target = null;	
+	private int _maxHp;
 	public int HealthPoints;
 	public int AttackRange;
 	public int Damage;
@@ -10,6 +11,7 @@ public class MonsterScript : MonoBehaviour {
 	public Vector3[] NavigationNodes;
 	public float NodeDelay = 2.0f;
 	public int Speed;
+	public bool _isDestroyed = false;
 	private int _defSpeed;
 	private int _currentNavNode = 0;
 	private float _currentDelay = 0.0f;
@@ -17,9 +19,19 @@ public class MonsterScript : MonoBehaviour {
 	private bool _isAttackRecovery = false;
 	private float _recoveryTimer = 0.0f;
 	private float _speedRecoveryTimer = -1.0f;
+	
+	//GUI
+	public GameObject _hud;
+	private UISlider _life;
+	private UILabel _name;
+	
 	// Use this for initialization
 	void Start () {
-	_defSpeed = Speed;
+		_life = _hud.GetComponentInChildren<UISlider>();
+		_name = _life.GetComponentInChildren<UILabel>();
+		_name.text = "Orc";
+		_maxHp = HealthPoints;
+		_defSpeed = Speed;
 	}
 	
 	public void SetTarget(playerController target)
@@ -31,13 +43,29 @@ public class MonsterScript : MonoBehaviour {
 	{
 		HealthPoints -= damage;
 		if (HealthPoints <= 0)
-			Destroy(gameObject);
+			_isDestroyed = true;
 	}
 	
 	public void setSpeed(int speed, int delay)
 	{
 		Speed = speed;
 		_speedRecoveryTimer = delay;
+	}
+	
+	// Updates lifebar
+	protected void UpdateLife()
+	{
+		if (_hud)
+		{
+			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
+									transform.position.y + 1.85f,
+									transform.position.z + 0.3f);
+    		_hud.transform.rotation = Camera.main.transform.rotation;
+		}
+		if (_life)
+		{
+			_life.sliderValue = (float)((float)HealthPoints / (float)_maxHp);
+		}
 	}
 	
 	// Update is called once per frame
@@ -95,6 +123,14 @@ public class MonsterScript : MonoBehaviour {
 			}
 			else
 				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+		}
+		UpdateLife();
+		if (_isDestroyed)
+		{
+			NGUITools.Destroy(_life);
+			Destroy(_hud);
+			Destroy(gameObject);
+			PlayerPrefs.SetInt ("NbMonstre", PlayerPrefs.GetInt("NbMonstre") + 1);
 		}
 	}
 }
