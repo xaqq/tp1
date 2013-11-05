@@ -54,4 +54,5 @@ function LateUpdate () {
 	
 	// Always look at the target
 	transform.LookAt (target);
+	
 }
