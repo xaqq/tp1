@@ -10,14 +10,16 @@ public class MonsterScript : MonoBehaviour {
 	public Vector3[] NavigationNodes;
 	public float NodeDelay = 2.0f;
 	public int Speed;
+	private int _defSpeed;
 	private int _currentNavNode = 0;
 	private float _currentDelay = 0.0f;
 	private bool _isDelay = false;
 	private bool _isAttackRecovery = false;
 	private float _recoveryTimer = 0.0f;
+	private float _speedRecoveryTimer = -1.0f;
 	// Use this for initialization
 	void Start () {
-	
+	_defSpeed = Speed;
 	}
 	
 	public void SetTarget(playerController target)
@@ -32,8 +34,20 @@ public class MonsterScript : MonoBehaviour {
 			Destroy(gameObject);
 	}
 	
+	public void setSpeed(int speed, int delay)
+	{
+		Speed = speed;
+		_speedRecoveryTimer = delay;
+	}
+	
 	// Update is called once per frame
 	void Update () {
+		if (_speedRecoveryTimer > 0)
+		{
+			_speedRecoveryTimer -= Time.deltaTime;
+			if (_speedRecoveryTimer < 0)
+				Speed = _defSpeed;
+		}
 		
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttackRecovery && _target != null)

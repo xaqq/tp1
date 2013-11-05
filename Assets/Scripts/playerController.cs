@@ -137,7 +137,6 @@ public class playerController : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit)){
 			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
 			{
-				print(_isClicked);
 				_isClicked = true;
 				_click = hit.point;
 				_click.y = transform.position.y;
@@ -184,6 +183,22 @@ public class playerController : MonoBehaviour {
 			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
 	}
 	
+	void root()
+	{
+		
+		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit)){
+			MonsterScript __target = hit.transform.gameObject.GetComponent<MonsterScript>();
+			if (__target && __target.Speed > 0)
+			{
+				_curMp -= 30;
+				__target.setSpeed(0, 2);
+			}
+		}
+	}
+	
 	void teleport()
 	{
 		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -199,9 +214,6 @@ public class playerController : MonoBehaviour {
 				Ray newray = new Ray(charpos, pos - charpos);
 				if (Physics.Raycast(newray, out hit, (pos - charpos).magnitude))
 				{
-					print (ray);
-					print (hit.distance);
-					print (hit.transform.name);
 					return ;
 				}
 				pos.y -= 1;
@@ -256,9 +268,9 @@ public class playerController : MonoBehaviour {
 					_curMp -= 20;
 					teleport();
 			}
-			else if (Input.GetKeyDown (KeyCode.Alpha2))
+			else if (Input.GetKeyDown (KeyCode.Alpha2) && _curMp >= 30)
 			{
-				
+				root();
 			}
 			else if (Input.GetKeyDown (KeyCode.Alpha1) && _curMp >= 10)
 			{
