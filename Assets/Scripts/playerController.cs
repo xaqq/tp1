@@ -29,7 +29,7 @@ public class playerController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		animation["attack01"].speed = 4.0f;
+		animation["attack01"].speed = 1.8f;
 		animation.CrossFade("idle");
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
@@ -256,8 +256,8 @@ public class playerController : MonoBehaviour {
 		{
 			_currentRotationTime += Time.deltaTime * 1000;
 			animation.CrossFade("attack01");
-			transform.eulerAngles = Vector3.Lerp(_startRotation, _endRotation, _currentRotationTime / 500);
-			if (_currentRotationTime > 500.0f)
+			transform.eulerAngles = Vector3.Lerp(_startRotation, _endRotation, _currentRotationTime / 1000);
+			if (_currentRotationTime > 1000.0f)
 			{
 				_isAttacking = false;
 				attack();
