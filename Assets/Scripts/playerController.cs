@@ -22,13 +22,18 @@ public class playerController : MonoBehaviour {
 	private bool _isClicked = false;
 	private bool _isFA = false;
 	public float ManaRegenerationOver5Seconds = 10;
-	
+	private int _nbMonsterKilled = 1;
 	// Use this for initialization
 	void Start () {
 		animation["attack01"].speed = 4.0f;
 		animation.CrossFade("idle");
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
+	}
+	
+	public int getNbMonsterKilled()
+	{
+		return _nbMonsterKilled;
 	}
 	
 	public void hurt(int damage)
@@ -88,7 +93,7 @@ public class playerController : MonoBehaviour {
 	{
 		if (_hud)
 		{
-			_hud.transform.position = new Vector3(transform.position.x + 0.2f,
+			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
 									transform.position.y + 1.65f,
 									transform.position.z + 0.3f);
     		_hud.transform.rotation = Camera.main.transform.rotation;
