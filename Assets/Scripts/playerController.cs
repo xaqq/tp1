@@ -20,6 +20,7 @@ public class playerController : MonoBehaviour {
 	public Transform arrow;
 	private Vector3 _click = Vector3.zero;
 	private bool _isClicked = false;
+	private bool _isFA = false;
 	
 	// Use this for initialization
 	void Start () {
@@ -101,13 +102,39 @@ public class playerController : MonoBehaviour {
 		}
 	}
 	
+	void fireFA()
+	{
+		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit)){
+			animation.CrossFade("attack01");
+			_isAttacking = true;
+			_clickingPosition = hit.point;
+			_currentRotationTime = 0.0f;
+			_startRotation = transform.eulerAngles;
+			transform.LookAt(_clickingPosition);
+			_endRotation = transform.eulerAngles;
+			_endRotation.x = 0;
+			_endRotation.z = 0;
+			transform.eulerAngles = _startRotation;
+			_startRotation.x = 0;
+			_startRotation.z = 0;
+			if (Mathf.Abs(_startRotation.y + 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
+				_startRotation.y += 360;
+			if (Mathf.Abs(_startRotation.y - 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
+				_startRotation.y -= 360;
+			_currentRotationTime = 0;
+			_isFA = true;
+		}
+	}
+	
 	void fire()
 	{
 		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
-			print (hit.collider.gameObject.name);
 			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
 			{
 				print(_isClicked);
@@ -135,13 +162,21 @@ public class playerController : MonoBehaviour {
 			if (Mathf.Abs(_startRotation.y - 360 - _endRotation.y) < Mathf.Abs(_startRotation.y - _endRotation.y))
 				_startRotation.y -= 360;
 			_currentRotationTime = 0;
+				_isFA = false;
 			}
 		}
 	}
 	
 	void attack()
 	{
-		GameObject o = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Arrow"));
+		GameObject o;
+		if (_isFA)
+		{
+			o = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Fire Arrow"));
+			_curMp -= 10;
+		}
+		else
+			o = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Arrow"));
 		Vector3 temp = transform.position;
 		temp.y = 1;
 			o.transform.position = temp;
@@ -216,16 +251,18 @@ public class playerController : MonoBehaviour {
 		
 		if (!_isAttacking)
 		{
-			if (Input.GetKeyDown (KeyCode.Alpha3))
+			if (Input.GetKeyDown (KeyCode.Alpha3) && _curMp >= 20)
 			{
-				teleport();
+					_curMp -= 20;
+					teleport();
 			}
 			else if (Input.GetKeyDown (KeyCode.Alpha2))
 			{
 				
 			}
-			else if (Input.GetKeyDown (KeyCode.Alpha1))
+			else if (Input.GetKeyDown (KeyCode.Alpha1) && _curMp >= 10)
 			{
+				fireFA();
 			}
 			else
 			{		
