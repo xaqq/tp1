@@ -21,6 +21,7 @@ public class playerController : MonoBehaviour {
 	private Vector3 _click = Vector3.zero;
 	private bool _isClicked = false;
 	private bool _isFA = false;
+	public float ManaRegenerationOver5Seconds = 10;
 	
 	// Use this for initialization
 	void Start () {
@@ -183,6 +184,13 @@ public class playerController : MonoBehaviour {
 			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
 	}
 	
+	void regenerateMana()
+	{
+		_curMp += ManaRegenerationOver5Seconds / 5 * Time.deltaTime;
+		if (_curMp > _maxMp)
+			_curMp = _maxMp;
+	}
+	
 	void root()
 	{
 		
@@ -225,6 +233,7 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		regenerateMana();
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttacking)
 		{
