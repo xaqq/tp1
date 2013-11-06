@@ -22,7 +22,8 @@ public class playerController : MonoBehaviour {
 	private bool _isClicked = false;
 	private bool _isFA = false;
 	public float ManaRegenerationOver5Seconds = 10;
-	
+	private bool _firepressed = false;
+	private float _lastSinceFire = 0.0f;
 	void Awake() {
 		PlayerPrefs.SetInt("NbMonstre", 0);
 	}
@@ -250,6 +251,9 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		_lastSinceFire += Time.deltaTime;
+		if (Input.GetAxis("Fire1") < 0.5 || _lastSinceFire > 0.5)
+			_firepressed = false;
 		regenerateMana();
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttacking)
@@ -306,12 +310,14 @@ public class playerController : MonoBehaviour {
 			{
 				heal();
 			}
-			else
+			else if (_firepressed == false)
 			{		
 				float fire = Input.GetAxis("Fire1");
 				if (Mathf.Abs(fire) > 0.5)
 				{
 					this.fire();
+					_firepressed = true;
+					_lastSinceFire = 0.0f;
 				}
 			}
 		}
