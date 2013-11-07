@@ -3,6 +3,10 @@ using System.Collections;
 
 public class playerController : MonoBehaviour {
 	public GameObject _hud;
+	public AudioClip _teleportSound;
+	public AudioClip _fireSound;
+	public AudioClip _healSound;
+	public AudioClip _snareSound;
 	public float speed_ = 4;
 	public float rotationSpeed_ = 180;
 	public UISlider _life;
@@ -194,6 +198,7 @@ public class playerController : MonoBehaviour {
 			o.transform.LookAt(_clickingPosition);
 		if (_isTPS)
 			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
+		audio.PlayOneShot(_fireSound);
 	}
 	
 	void regenerateMana()
@@ -215,6 +220,7 @@ public class playerController : MonoBehaviour {
 			{
 				_curMp -= 30;
 				__target.setSpeed(0, 2);
+				audio.PlayOneShot(_snareSound);
 			}
 		}
 	}
@@ -229,11 +235,13 @@ public class playerController : MonoBehaviour {
 				_curHp = _maxHp;
 			}
 			_curMp -= 20;
+			audio.PlayOneShot(_healSound);
 		}
 	}
 	
 	void teleport()
 	{
+		
 		 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		RaycastHit hit;
@@ -251,6 +259,7 @@ public class playerController : MonoBehaviour {
 				}
 				pos.y -= 1;
 				transform.position = pos;
+				audio.PlayOneShot(_teleportSound);
 			}
 		}
 		
