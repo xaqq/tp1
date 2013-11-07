@@ -24,6 +24,10 @@ public class playerController : MonoBehaviour {
 	public float ManaRegenerationOver5Seconds = 10;
 	private bool _firepressed = false;
 	private float _lastSinceFire = 0.0f;
+	public GameObject TPSCamera;
+	public GameObject FPSCamera;
+	private bool _isTPS = true;
+	private bool _isCReleased = true;
 	void Awake() {
 		PlayerPrefs.SetInt("NbMonstre", 0);
 	}
@@ -70,6 +74,8 @@ public class playerController : MonoBehaviour {
 		{
 			_isClicked = false;
 		}
+		if (_isClicked == true)
+			return ;
 		// Get the horizontal and vertical axis.
 		// By default they are mapped to the arrow keys.
 		// The value is in the range -1 to 1
@@ -141,7 +147,7 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
-			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
+			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null && _isTPS)
 			{
 				_isClicked = true;
 				_click = hit.point;
@@ -183,9 +189,10 @@ public class playerController : MonoBehaviour {
 		else
 			o = (GameObject)GameObject.Instantiate(Resources.Load("Prefabs/Arrow"));
 		Vector3 temp = transform.position;
-		temp.y = 1;
+			temp.y = 2;
 			o.transform.position = temp;
 			o.transform.LookAt(_clickingPosition);
+		if (_isTPS)
 			o.transform.eulerAngles = new Vector3(0, o.transform.eulerAngles.y, 0);
 	}
 	
@@ -286,10 +293,7 @@ public class playerController : MonoBehaviour {
 				transform.Translate(Vector3.forward * speed_ * Time.deltaTime);
 			}
 		}
-		else
-		{
 			this.update_move();
-		}
 		
 		if (!_isAttacking)
 		{
@@ -322,5 +326,21 @@ public class playerController : MonoBehaviour {
 			}
 		}
 		UpdateLife();
+		
+		if (Input.GetKeyDown(KeyCode.C) && _isCReleased)
+		{
+			_isCReleased = false;
+			if (_isTPS)
+			{
+				TPSCamera.SetActive(false);
+				FPSCamera.SetActive(true);
+			}
+			else
+			{
+				TPSCamera.SetActive(true);
+				FPSCamera.SetActive(false);
+			}
+			_isTPS = !_isTPS;
+		}
 	}
 }
