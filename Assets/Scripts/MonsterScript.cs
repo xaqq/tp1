@@ -44,7 +44,15 @@ public class MonsterScript : MonoBehaviour {
 	{
 		HealthPoints -= damage;
 		if (HealthPoints <= 0)
+		{
 			_isDestroyed = true;
+			this.GetComponentInChildren<Animation>().animation.Stop();
+			this.GetComponentInChildren<Animation>().animation.CrossFade("death");
+			
+			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("death"))
+				print("DYING");
+			print ("lol");
+		}
 	}
 	
 	public void setSpeed(int speed, int delay)
@@ -83,6 +91,22 @@ public class MonsterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		UpdateLife();
+		if (_isDestroyed)
+		{
+			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("death"))
+			{
+				print ("HOHOHO");
+				return;
+			}
+			NGUITools.Destroy(_life);
+			Destroy(_hud);
+			Destroy(gameObject);
+			PlayerPrefs.SetInt ("NbMonstre", PlayerPrefs.GetInt("NbMonstre") + 1);
+			return;
+		}		
+		
 		if (_speedRecoveryTimer > 0)
 		{
 			_speedRecoveryTimer -= Time.deltaTime;
@@ -143,14 +167,6 @@ public class MonsterScript : MonoBehaviour {
 				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
 				move_or_idle();
 			}
-		}
-		UpdateLife();
-		if (_isDestroyed)
-		{
-			NGUITools.Destroy(_life);
-			Destroy(_hud);
-			Destroy(gameObject);
-			PlayerPrefs.SetInt ("NbMonstre", PlayerPrefs.GetInt("NbMonstre") + 1);
 		}
 	}
 }
