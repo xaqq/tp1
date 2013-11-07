@@ -1206,6 +1206,7 @@ GameObject:
   - 65: {fileID: 6500000}
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400010}
+  - 82: {fileID: 8200000}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -2068,7 +2069,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.241299793, y: 5.72991518e-17, z: -30.1610489}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400124}
@@ -2450,6 +2451,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: .75, z: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100158}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!111 &11100000
 Animation:
   m_ObjectHideFlags: 1
@@ -2494,6 +2553,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hud: {fileID: 100174}
+  _teleportSound: {fileID: 8300000, guid: a115b845d31dba44aa433179f728b6cc, type: 3}
+  _fireSound: {fileID: 8300000, guid: 9a89c870a2750044a8fb6bcf408d7047, type: 3}
+  _healSound: {fileID: 8300000, guid: d2fb5a30452eeb542ad2054820eb4d9c, type: 3}
+  _snareSound: {fileID: 8300000, guid: 1091ffa28407920449868950d9c31989, type: 3}
   speed_: 10
   rotationSpeed_: 90
   _life: {fileID: 11400002}
@@ -2502,8 +2565,10 @@ MonoBehaviour:
   _maxHp: 100
   _curMp: 100
   _maxMp: 100
-  arrow: {fileID: 0}
+  arrow: {fileID: 400008, guid: 7f207536d5f1d4438ba0856ce48898c7, type: 2}
   ManaRegenerationOver5Seconds: 10
+  TPSCamera: {fileID: 0}
+  FPSCamera: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

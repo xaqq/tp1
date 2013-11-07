@@ -129,7 +129,10 @@ public class GuiController : MonoBehaviour {
 	void UpdateTopMenu()
 	{
 		_tmpTime = System.DateTime.Now;
-		_time.text = _tmpTime.Hour.ToString() + ":" + _tmpTime.Minute.ToString();
+		_time.text = _tmpTime.Hour.ToString() + ":";
+		if (_tmpTime.Minute < 10)
+			_time.text += "0";
+		_time.text += _tmpTime.Minute.ToString();
 		_nbMonster.text = PlayerPrefs.GetInt("NbMonstre").ToString();
 	}
 	
