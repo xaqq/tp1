@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MonsterScript : MonoBehaviour {
 	private playerController _target = null;	
+	public AudioClip _hurtSound;
 	private int _maxHp;
 	public int HealthPoints;
 	public int AttackRange;
@@ -42,6 +43,7 @@ public class MonsterScript : MonoBehaviour {
 	
 	public void hurt(int damage)
 	{
+		audio.PlayOneShot(_hurtSound);
 		HealthPoints -= damage;
 		if (HealthPoints <= 0)
 		{
@@ -97,7 +99,6 @@ public class MonsterScript : MonoBehaviour {
 		{
 			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("death"))
 			{
-				print ("HOHOHO");
 				return;
 			}
 			NGUITools.Destroy(_life);

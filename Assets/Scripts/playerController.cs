@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour {
 	public AudioClip _fireSound;
 	public AudioClip _healSound;
 	public AudioClip _snareSound;
+	public AudioClip _attackSound;
 	public float speed_ = 4;
 	public float rotationSpeed_ = 180;
 	public UISlider _life;
@@ -47,6 +48,7 @@ public class playerController : MonoBehaviour {
 	public void hurt(int damage)
 	{
 		_curHp -= damage;
+		audio.PlayOneShot(_attackSound);
 		if (_curHp <= 0)
 			Destroy(gameObject);
 	}
