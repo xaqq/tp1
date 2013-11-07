@@ -24,7 +24,7 @@ public class MonsterScript : MonoBehaviour {
 	public GameObject _hud;
 	private UISlider _life;
 	private UILabel _name;
-	
+
 	// Use this for initialization
 	void Start () {
 		_life = _hud.GetComponentInChildren<UISlider>();
@@ -32,6 +32,7 @@ public class MonsterScript : MonoBehaviour {
 		_name.text = "Orc";
 		_maxHp = HealthPoints;
 		_defSpeed = Speed;
+				this.GetComponentInChildren<Animation>()["attack_main"].speed = 1.5f;
 	}
 	
 	public void SetTarget(playerController target)
@@ -68,6 +69,18 @@ public class MonsterScript : MonoBehaviour {
 		}
 	}
 	
+	public void move_or_idle()
+	{
+		if (Speed > 0.1)
+		{
+			this.GetComponentInChildren<Animation>().animation.CrossFade("run");
+		}
+		else{
+			this.GetComponentInChildren<Animation>().animation.CrossFade("stun");
+		}
+	}
+	
+	
 	// Update is called once per frame
 	void Update () {
 		if (_speedRecoveryTimer > 0)
@@ -79,10 +92,11 @@ public class MonsterScript : MonoBehaviour {
 		
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttackRecovery && _target != null)
-		{
+		{			
+			this.GetComponentInChildren<Animation>().animation.CrossFade("attack_main");
 			_recoveryTimer += Time.deltaTime;
 			if (_recoveryTimer > AttackSpeed)
-			{
+			{			
 				_target.hurt(Damage);
 				_isAttackRecovery = false;
 			}
@@ -99,7 +113,10 @@ public class MonsterScript : MonoBehaviour {
 				return;
 			}
 			else
-				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+			{
+				transform.Translate(Vector3.forward * Speed * Time.deltaTime);				
+				move_or_idle();
+			}
 		}
 		else if (_isDelay)
 		{
@@ -122,7 +139,10 @@ public class MonsterScript : MonoBehaviour {
 				}
 			}
 			else
+			{
 				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+				move_or_idle();
+			}
 		}
 		UpdateLife();
 		if (_isDestroyed)
