@@ -149,7 +149,7 @@ ModelImporter:
     7400000: refpose
     7400002: walk
     7400004: run
-    7400006: attack1
+    7400006: attack
     7400008: attack2
     7400010: idle
     7400012: hit1
@@ -238,7 +238,7 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       transformMask: []
-    - name: attack1
+    - name: attack
       takeName: Take 001
       firstFrame: 65
       lastFrame: 85

@@ -8,7 +8,7 @@ public class MonsterScript : MonoBehaviour {
 	public int HealthPoints;
 	public int AttackRange;
 	public int Damage;
-	public int AttackSpeed;
+	public float AttackSpeed;
 	public Vector3[] NavigationNodes;
 	public float NodeDelay = 2.0f;
 	public int Speed;
@@ -33,7 +33,7 @@ public class MonsterScript : MonoBehaviour {
 		_name.text = "Orc";
 		_maxHp = HealthPoints;
 		_defSpeed = Speed;
-				this.GetComponentInChildren<Animation>()["attack_main"].speed = 1.5f;
+				this.GetComponentInChildren<Animation>()["attack"].speed = 1.5f;
 	}
 	
 	public void SetTarget(playerController target)
@@ -51,7 +51,7 @@ public class MonsterScript : MonoBehaviour {
 		{
 			_isDestroyed = true;
 			this.GetComponentInChildren<Animation>().animation.Stop();
-			this.GetComponentInChildren<Animation>().animation.CrossFade("death");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("die");
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class MonsterScript : MonoBehaviour {
 		UpdateLife();
 		if (_isDestroyed)
 		{
-			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("death"))
+			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("die"))
 			{
 				return;
 			}
@@ -116,7 +116,7 @@ public class MonsterScript : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttackRecovery && _target != null)
 		{			
-			this.GetComponentInChildren<Animation>().animation.CrossFade("attack_main");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("attack");
 			_recoveryTimer += Time.deltaTime;
 			if (_recoveryTimer > AttackSpeed)
 			{			

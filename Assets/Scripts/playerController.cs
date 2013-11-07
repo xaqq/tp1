@@ -302,6 +302,10 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyUp(KeyCode.C))
+		{
+			_isCReleased = true;
+		}
 		isRooted();
 		_lastSinceFire += Time.deltaTime;
 		if (Input.GetAxis("Fire1") < 0.5 || _lastSinceFire > 0.5)

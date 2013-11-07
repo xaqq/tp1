@@ -1,65 +1,812 @@
 fileFormatVersion: 2
 guid: 93068bd344dc6fe4c870b4ac9f90d4ff
 ModelImporter:
+  serializedVersion: 15
   fileIDToRecycleName:
+    100000: knee_R
+    100002: ankle_R
+    100004: //RootNode
+    100006: ankle_L
+    100008: knee_L
+    100010: thigh_L
+    100012: index_2_L
+    100014: index_1_L
+    100016: index_0_L
+    100018: mid_2_L
+    100020: thigh_R
+    100022: toeBase_L
+    100024: index_1_R
+    100026: index_0_R
+    100028: wrist_R
+    100030: elbow_R
+    100032: joint5
+    100034: joint4
+    100036: bicep_R
+    100038: clavicle_R
+    100040: hair_R4C0
+    100042: hair_R3C0
+    100044: hair_R2C0
+    100046: hair_R1C0
+    100048: hair_R0C0
+    100050: joint7
+    100052: joint6
+    100054: head
+    100056: neck1
+    100058: spine3
+    100060: spine2
+    100062: spine1
+    100064: root
+    100066: axe_model
+    100068: axe_model_001
+    100070: axe_armor
+    100072: axe_belt
+    100074: axe_ponytail
+    100076: mid_1_L
+    100078: mid_0_L
+    100080: thumb_1_L
+    100082: thumb_0_L
+    100084: wrist_L
+    100086: elbow_L
+    100088: bicep_L
+    100090: clavicle_L
+    100092: chain_bot_R3C0
+    100094: chain_bot_R2C0
+    100096: chain_bot_R1C0
+    100098: chain_bot_R0C0
+    100100: chain_top_R4C0
+    100102: chain_top_R3C0
+    100104: chain_top_R2C0
+    100106: chain_top_R1C0
+    100108: chain_top_R0C0
+    100110: chain_top_BC
+    100112: axe_1
+    100114: mid_2_R
+    100116: mid_1_R
+    100118: mid_0_R
+    100120: thumb_1_R
+    100122: thumb_0_R
+    100124: index_2_R
+    100126: toeBase_R
+    100128: axe_weapon_model
+    400000: knee_R
+    400002: ankle_R
+    400004: //RootNode
+    400006: ankle_L
+    400008: knee_L
+    400010: thigh_L
+    400012: index_2_L
+    400014: index_1_L
+    400016: index_0_L
+    400018: mid_2_L
+    400020: thigh_R
+    400022: toeBase_L
+    400024: index_1_R
+    400026: index_0_R
+    400028: wrist_R
+    400030: elbow_R
+    400032: joint5
+    400034: joint4
+    400036: bicep_R
+    400038: clavicle_R
+    400040: hair_R4C0
+    400042: hair_R3C0
+    400044: hair_R2C0
+    400046: hair_R1C0
+    400048: hair_R0C0
+    400050: joint7
+    400052: joint6
+    400054: head
+    400056: neck1
+    400058: spine3
+    400060: spine2
+    400062: spine1
+    400064: root
+    400066: axe_model
+    400068: axe_model_001
+    400070: axe_armor
+    400072: axe_belt
+    400074: axe_ponytail
+    400076: mid_1_L
+    400078: mid_0_L
+    400080: thumb_1_L
+    400082: thumb_0_L
+    400084: wrist_L
+    400086: elbow_L
+    400088: bicep_L
+    400090: clavicle_L
+    400092: chain_bot_R3C0
+    400094: chain_bot_R2C0
+    400096: chain_bot_R1C0
+    400098: chain_bot_R0C0
+    400100: chain_top_R4C0
+    400102: chain_top_R3C0
+    400104: chain_top_R2C0
+    400106: chain_top_R1C0
+    400108: chain_top_R0C0
+    400110: chain_top_BC
+    400112: axe_1
+    400114: mid_2_R
+    400116: mid_1_R
+    400118: mid_0_R
+    400120: thumb_1_R
+    400122: thumb_0_R
+    400124: index_2_R
+    400126: toeBase_R
+    400128: axe_weapon_model
     4300000: axe_weapon_model
     4300002: axe_ponytail
     4300004: axe_belt
     4300006: axe_armor
     4300008: axe_model_001
-    7400000: Default Take //// axe
-    7400002: attack_alt //// axe
-    7400004: attack_main //// axe
-    7400006: attack_main_injured //// axe
-    7400008: axe_forcestaff_end //// axe
-    7400010: axe_spawn //// axe
-    7400012: axe_taunt_01 //// axe
-    7400014: axe_taunt_02_good_day_sir //// axe
-    7400016: axe_teleport //// axe
-    7400018: axe_teleport_end //// axe
-    7400020: battle_hunger //// axe
-    7400022: berserkers_call //// axe
-    7400024: counter_helix //// axe
-    7400026: counter_helix_blood_chaser //// axe
-    7400028: culling_blade //// axe
-    7400030: death //// axe
-    7400032: flail //// axe
-    7400034: forcestaff //// axe
-    7400036: forcestaff_enemy //// axe
-    7400038: idle //// axe
-    7400040: idle_alt //// axe
-    7400042: idle_alt2 //// axe
-    7400044: idle_injured //// axe
-    7400046: idle_injured_blood_chaser //// axe
-    7400048: run //// axe
-    7400050: run_chase //// axe
-    7400052: run_haste //// axe
-    7400054: run_injured //// axe
-    7400056: stun //// axe
-  serializedVersion: 10
+    7400000: Default Take
+    7400002: attack_alt
+    7400004: attack
+    7400006: attack_main_injured
+    7400008: axe_forcestaff_end
+    7400010: axe_spawn
+    7400012: axe_taunt_01
+    7400014: axe_taunt_02_good_day_sir
+    7400016: axe_teleport
+    7400018: axe_teleport_end
+    7400020: battle_hunger
+    7400022: berserkers_call
+    7400024: counter_helix
+    7400026: counter_helix_blood_chaser
+    7400028: culling_blade
+    7400030: die
+    7400032: flail
+    7400034: forcestaff
+    7400036: forcestaff_enemy
+    7400038: idle
+    7400040: idle_alt
+    7400042: idle_alt2
+    7400044: idle_injured
+    7400046: idle_injured_blood_chaser
+    7400048: run
+    7400050: run_chase
+    7400052: run_haste
+    7400054: run_injured
+    7400056: stun
+    11100000: //RootNode
+    13700000: axe_model_001
+    13700002: axe_armor
+    13700004: axe_belt
+    13700006: axe_ponytail
+    13700008: axe_weapon_model
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
-    generateAnimations: 3
+    legacyGenerateAnimations: 3
     bakeSimulation: 0
-    splitAnimations: 1
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: Default Take
+      takeName: Default Take
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: attack_alt
+      takeName: attack_alt
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: attack
+      takeName: attack_main
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: attack_main_injured
+      takeName: attack_main_injured
+      firstFrame: -1
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_forcestaff_end
+      takeName: axe_forcestaff_end
+      firstFrame: -1
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_spawn
+      takeName: axe_spawn
+      firstFrame: -1
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_taunt_01
+      takeName: axe_taunt_01
+      firstFrame: -1
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_taunt_02_good_day_sir
+      takeName: axe_taunt_02_good_day_sir
+      firstFrame: -1
+      lastFrame: 74
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_teleport
+      takeName: axe_teleport
+      firstFrame: -1
+      lastFrame: 239
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: axe_teleport_end
+      takeName: axe_teleport_end
+      firstFrame: -1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: battle_hunger
+      takeName: battle_hunger
+      firstFrame: -1
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: berserkers_call
+      takeName: berserkers_call
+      firstFrame: -1
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: counter_helix
+      takeName: counter_helix
+      firstFrame: -1
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: counter_helix_blood_chaser
+      takeName: counter_helix_blood_chaser
+      firstFrame: -1
+      lastFrame: 18
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: culling_blade
+      takeName: culling_blade
+      firstFrame: -1
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: die
+      takeName: death
+      firstFrame: -1
+      lastFrame: 39
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: flail
+      takeName: flail
+      firstFrame: -1
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: forcestaff
+      takeName: forcestaff
+      firstFrame: -1
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: forcestaff_enemy
+      takeName: forcestaff_enemy
+      firstFrame: -1
+      lastFrame: 19
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle
+      takeName: idle
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle_alt
+      takeName: idle_alt
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle_alt2
+      takeName: idle_alt2
+      firstFrame: -1
+      lastFrame: 105
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle_injured
+      takeName: idle_injured
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: idle_injured_blood_chaser
+      takeName: idle_injured_blood_chaser
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: run
+      takeName: run
+      firstFrame: -1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: run_chase
+      takeName: run_chase
+      firstFrame: -1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: run_haste
+      takeName: run_haste
+      firstFrame: -1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: run_injured
+      takeName: run_injured
+      firstFrame: -1
+      lastFrame: 26
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    - name: stun
+      takeName: stun
+      firstFrame: -1
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
+    importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMesh: 0
+    optimizeMeshForGPU: 1
+    weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -69,477 +816,21 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  textMetaNamesToFileIDs:
-    //RootNode:
-      data:
-        first: 1
-        second: a4860100
-      data:
-        first: 4
-        second: 841a0600
-      data:
-        first: 111
-        second: 605fa900
-    ankle_L:
-      data:
-        first: 1
-        second: a6860100
-      data:
-        first: 4
-        second: 861a0600
-    ankle_R:
-      data:
-        first: 1
-        second: a2860100
-      data:
-        first: 4
-        second: 821a0600
-    axe_1:
-      data:
-        first: 1
-        second: 10870100
-      data:
-        first: 4
-        second: f01a0600
-    axe_armor:
-      data:
-        first: 1
-        second: e6860100
-      data:
-        first: 4
-        second: c61a0600
-      data:
-        first: 137
-        second: a20bd100
-    axe_belt:
-      data:
-        first: 1
-        second: e8860100
-      data:
-        first: 4
-        second: c81a0600
-      data:
-        first: 137
-        second: a40bd100
-    axe_model:
-      data:
-        first: 1
-        second: e2860100
-      data:
-        first: 4
-        second: c21a0600
-    axe_model_001:
-      data:
-        first: 1
-        second: e4860100
-      data:
-        first: 4
-        second: c41a0600
-      data:
-        first: 137
-        second: a00bd100
-    axe_ponytail:
-      data:
-        first: 1
-        second: ea860100
-      data:
-        first: 4
-        second: ca1a0600
-      data:
-        first: 137
-        second: a60bd100
-    axe_weapon_model:
-      data:
-        first: 1
-        second: 20870100
-      data:
-        first: 4
-        second: 001b0600
-      data:
-        first: 137
-        second: a80bd100
-    bicep_L:
-      data:
-        first: 1
-        second: f8860100
-      data:
-        first: 4
-        second: d81a0600
-    bicep_R:
-      data:
-        first: 1
-        second: c4860100
-      data:
-        first: 4
-        second: a41a0600
-    chain_bot_R0C0:
-      data:
-        first: 1
-        second: 02870100
-      data:
-        first: 4
-        second: e21a0600
-    chain_bot_R1C0:
-      data:
-        first: 1
-        second: 00870100
-      data:
-        first: 4
-        second: e01a0600
-    chain_bot_R2C0:
-      data:
-        first: 1
-        second: fe860100
-      data:
-        first: 4
-        second: de1a0600
-    chain_bot_R3C0:
-      data:
-        first: 1
-        second: fc860100
-      data:
-        first: 4
-        second: dc1a0600
-    chain_top_BC:
-      data:
-        first: 1
-        second: 0e870100
-      data:
-        first: 4
-        second: ee1a0600
-    chain_top_R0C0:
-      data:
-        first: 1
-        second: 0c870100
-      data:
-        first: 4
-        second: ec1a0600
-    chain_top_R1C0:
-      data:
-        first: 1
-        second: 0a870100
-      data:
-        first: 4
-        second: ea1a0600
-    chain_top_R2C0:
-      data:
-        first: 1
-        second: 08870100
-      data:
-        first: 4
-        second: e81a0600
-    chain_top_R3C0:
-      data:
-        first: 1
-        second: 06870100
-      data:
-        first: 4
-        second: e61a0600
-    chain_top_R4C0:
-      data:
-        first: 1
-        second: 04870100
-      data:
-        first: 4
-        second: e41a0600
-    clavicle_L:
-      data:
-        first: 1
-        second: fa860100
-      data:
-        first: 4
-        second: da1a0600
-    clavicle_R:
-      data:
-        first: 1
-        second: c6860100
-      data:
-        first: 4
-        second: a61a0600
-    elbow_L:
-      data:
-        first: 1
-        second: f6860100
-      data:
-        first: 4
-        second: d61a0600
-    elbow_R:
-      data:
-        first: 1
-        second: be860100
-      data:
-        first: 4
-        second: 9e1a0600
-    hair_R0C0:
-      data:
-        first: 1
-        second: d0860100
-      data:
-        first: 4
-        second: b01a0600
-    hair_R1C0:
-      data:
-        first: 1
-        second: ce860100
-      data:
-        first: 4
-        second: ae1a0600
-    hair_R2C0:
-      data:
-        first: 1
-        second: cc860100
-      data:
-        first: 4
-        second: ac1a0600
-    hair_R3C0:
-      data:
-        first: 1
-        second: ca860100
-      data:
-        first: 4
-        second: aa1a0600
-    hair_R4C0:
-      data:
-        first: 1
-        second: c8860100
-      data:
-        first: 4
-        second: a81a0600
-    head:
-      data:
-        first: 1
-        second: d6860100
-      data:
-        first: 4
-        second: b61a0600
-    index_0_L:
-      data:
-        first: 1
-        second: b0860100
-      data:
-        first: 4
-        second: 901a0600
-    index_0_R:
-      data:
-        first: 1
-        second: ba860100
-      data:
-        first: 4
-        second: 9a1a0600
-    index_1_L:
-      data:
-        first: 1
-        second: ae860100
-      data:
-        first: 4
-        second: 8e1a0600
-    index_1_R:
-      data:
-        first: 1
-        second: b8860100
-      data:
-        first: 4
-        second: 981a0600
-    index_2_L:
-      data:
-        first: 1
-        second: ac860100
-      data:
-        first: 4
-        second: 8c1a0600
-    index_2_R:
-      data:
-        first: 1
-        second: 1c870100
-      data:
-        first: 4
-        second: fc1a0600
-    joint4:
-      data:
-        first: 1
-        second: c2860100
-      data:
-        first: 4
-        second: a21a0600
-    joint5:
-      data:
-        first: 1
-        second: c0860100
-      data:
-        first: 4
-        second: a01a0600
-    joint6:
-      data:
-        first: 1
-        second: d4860100
-      data:
-        first: 4
-        second: b41a0600
-    joint7:
-      data:
-        first: 1
-        second: d2860100
-      data:
-        first: 4
-        second: b21a0600
-    knee_L:
-      data:
-        first: 1
-        second: a8860100
-      data:
-        first: 4
-        second: 881a0600
-    knee_R:
-      data:
-        first: 1
-        second: a0860100
-      data:
-        first: 4
-        second: 801a0600
-    mid_0_L:
-      data:
-        first: 1
-        second: ee860100
-      data:
-        first: 4
-        second: ce1a0600
-    mid_0_R:
-      data:
-        first: 1
-        second: 16870100
-      data:
-        first: 4
-        second: f61a0600
-    mid_1_L:
-      data:
-        first: 1
-        second: ec860100
-      data:
-        first: 4
-        second: cc1a0600
-    mid_1_R:
-      data:
-        first: 1
-        second: 14870100
-      data:
-        first: 4
-        second: f41a0600
-    mid_2_L:
-      data:
-        first: 1
-        second: b2860100
-      data:
-        first: 4
-        second: 921a0600
-    mid_2_R:
-      data:
-        first: 1
-        second: 12870100
-      data:
-        first: 4
-        second: f21a0600
-    neck1:
-      data:
-        first: 1
-        second: d8860100
-      data:
-        first: 4
-        second: b81a0600
-    root:
-      data:
-        first: 1
-        second: e0860100
-      data:
-        first: 4
-        second: c01a0600
-    spine1:
-      data:
-        first: 1
-        second: de860100
-      data:
-        first: 4
-        second: be1a0600
-    spine2:
-      data:
-        first: 1
-        second: dc860100
-      data:
-        first: 4
-        second: bc1a0600
-    spine3:
-      data:
-        first: 1
-        second: da860100
-      data:
-        first: 4
-        second: ba1a0600
-    thigh_L:
-      data:
-        first: 1
-        second: aa860100
-      data:
-        first: 4
-        second: 8a1a0600
-    thigh_R:
-      data:
-        first: 1
-        second: b4860100
-      data:
-        first: 4
-        second: 941a0600
-    thumb_0_L:
-      data:
-        first: 1
-        second: f2860100
-      data:
-        first: 4
-        second: d21a0600
-    thumb_0_R:
-      data:
-        first: 1
-        second: 1a870100
-      data:
-        first: 4
-        second: fa1a0600
-    thumb_1_L:
-      data:
-        first: 1
-        second: f0860100
-      data:
-        first: 4
-        second: d01a0600
-    thumb_1_R:
-      data:
-        first: 1
-        second: 18870100
-      data:
-        first: 4
-        second: f81a0600
-    toeBase_L:
-      data:
-        first: 1
-        second: b6860100
-      data:
-        first: 4
-        second: 961a0600
-    toeBase_R:
-      data:
-        first: 1
-        second: 1e870100
-      data:
-        first: 4
-        second: fe1a0600
-    wrist_L:
-      data:
-        first: 1
-        second: f4860100
-      data:
-        first: 4
-        second: d41a0600
-    wrist_R:
-      data:
-        first: 1
-        second: bc860100
-      data:
-        first: 4
-        second: 9c1a0600
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 
