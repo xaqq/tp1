@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterScript : MonoBehaviour {
+public class bossScript : MonoBehaviour {
 	private playerController _target = null;	
 	public AudioClip _hurtSound;
 	private int _maxHp;
@@ -9,8 +9,6 @@ public class MonsterScript : MonoBehaviour {
 	public int AttackRange;
 	public int Damage;
 	public int AttackSpeed;
-	public Vector3[] NavigationNodes;
-	public float NodeDelay = 2.0f;
 	public int Speed;
 	public bool _isDestroyed = false;
 	private int _defSpeed;
@@ -20,7 +18,9 @@ public class MonsterScript : MonoBehaviour {
 	private bool _isAttackRecovery = false;
 	private float _recoveryTimer = 0.0f;
 	private float _speedRecoveryTimer = -1.0f;
-
+		private float rootCooldown_ = 10.0f;
+	private bool isRootOnCooldown_ = false;
+	
 	//GUI
 	public GameObject _hud;
 	private UISlider _life;
@@ -30,10 +30,10 @@ public class MonsterScript : MonoBehaviour {
 	void Start () {
 		_life = _hud.GetComponentInChildren<UISlider>();
 		_name = _life.GetComponentInChildren<UILabel>();
-		_name.text = "Orc";
+		_name.text = "Boss";
 		_maxHp = HealthPoints;
 		_defSpeed = Speed;
-				this.GetComponentInChildren<Animation>()["attack_main"].speed = 1.5f;
+		//this.GetComponentInChildren<Animation>()["attack_main"].speed = 1.5f;
 	}
 	
 	public void SetTarget(playerController target)
@@ -51,7 +51,7 @@ public class MonsterScript : MonoBehaviour {
 		{
 			_isDestroyed = true;
 			this.GetComponentInChildren<Animation>().animation.Stop();
-			this.GetComponentInChildren<Animation>().animation.CrossFade("death");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("pudge_death");
 		}
 	}
 	
@@ -67,7 +67,7 @@ public class MonsterScript : MonoBehaviour {
 		if (_hud)
 		{
 			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
-									transform.position.y + 1.85f,
+									transform.position.y + 5.85f,
 									transform.position.z + 0.3f);
     		_hud.transform.rotation = Camera.main.transform.rotation;
 		}
@@ -81,21 +81,29 @@ public class MonsterScript : MonoBehaviour {
 	{
 		if (Speed > 0.1)
 		{
-			this.GetComponentInChildren<Animation>().animation.CrossFade("run");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("pudge_run_haste");
 		}
 		else{
-			this.GetComponentInChildren<Animation>().animation.CrossFade("stun");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("pudge_stun");
 		}
 	}
 	
 	
 	// Update is called once per frame
 	void Update () {
+						if (isRootOnCooldown_)
+				{
+					rootCooldown_ += Time.deltaTime;
+					if (rootCooldown_ >= 10)
+					{
+						isRootOnCooldown_ = false;
+					}
+				}
 		
 		UpdateLife();
 		if (_isDestroyed)
 		{
-			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("death"))
+			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("pudge_death"))
 			{
 				return;
 			}
@@ -116,7 +124,7 @@ public class MonsterScript : MonoBehaviour {
 		rigidbody.velocity = Vector3.zero;
 		if (_isAttackRecovery && _target != null)
 		{			
-			this.GetComponentInChildren<Animation>().animation.CrossFade("attack_main");
+			this.GetComponentInChildren<Animation>().animation.CrossFade("pudge_attack1");
 			_recoveryTimer += Time.deltaTime;
 			if (_recoveryTimer > AttackSpeed)
 			{			
@@ -135,37 +143,23 @@ public class MonsterScript : MonoBehaviour {
 				_recoveryTimer = 0.0f;
 				return;
 			}
-			else /* Too far away, moving toward target */
-			{
-				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+			else
+			{				
+				if (!isRootOnCooldown_)
+				{
+					print("ROOT THE TARGET");
+					_target.rootFor(3);
+					isRootOnCooldown_ = true;
+					rootCooldown_ = 0.0f;
+				}
+				transform.Translate(Vector3.forward * Speed * Time.deltaTime);				
 				move_or_idle();
 			}
-		}
-		else if (_isDelay)
-		{
-			_currentDelay += Time.deltaTime;
-			if (_currentDelay > NodeDelay)
-				_isDelay = false;
 		}
 		else
 		{
-			transform.LookAt(NavigationNodes[_currentNavNode]);
-			if ((NavigationNodes[_currentNavNode] - transform.position).magnitude <= Speed * Time.deltaTime)
-			{
-				transform.position = NavigationNodes[_currentNavNode];
-				_isDelay = true;
-				_currentDelay = 0;
-				_currentNavNode++;
-				if (_currentNavNode >= NavigationNodes.Length)
-				{
-					_currentNavNode = 0;
-				}
-			}
-			else
-			{
 				transform.Translate(Vector3.forward * Speed * Time.deltaTime);
 				move_or_idle();
-			}
 		}
 	}
 }

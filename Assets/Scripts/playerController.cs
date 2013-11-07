@@ -9,6 +9,8 @@ public class playerController : MonoBehaviour {
 	public AudioClip _snareSound;
 	public AudioClip _attackSound;
 	public float speed_ = 4;
+	private float rootDuration;
+	private float lastSpeed;
 	public float rotationSpeed_ = 180;
 	public UISlider _life;
 	public UISlider _mana;
@@ -153,7 +155,7 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
-			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null && _isTPS)
+			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null && hit.transform.gameObject.GetComponent<bossScript>() == null && _isTPS)
 			{
 				_isClicked = true;
 				_click = hit.point;
@@ -223,7 +225,36 @@ public class playerController : MonoBehaviour {
 				_curMp -= 30;
 				__target.setSpeed(0, 2);
 				audio.PlayOneShot(_snareSound);
+				return;
 			}
+			bossScript __target2 = hit.transform.gameObject.GetComponent<bossScript>();
+			if (__target2 && __target2.Speed > 0)
+			{
+				_curMp -= 30;
+				__target2.setSpeed(0, 2);
+				audio.PlayOneShot(_snareSound);
+				return;
+			}
+			
+		}
+	}
+	
+	/**
+	 * This unit will be rooted for sec seconds
+	 */
+	public void rootFor(int sec)
+	{
+		lastSpeed = speed_;
+		speed_ = 0;
+	    rootDuration = (float)sec;
+		animation.CrossFade("stun");
+	}	
+	
+	public void isRooted()
+	{
+		if (speed_ == 0 && (rootDuration -= Time.deltaTime) < 0)
+		{
+			speed_ = lastSpeed;
 		}
 	}
 	
@@ -249,7 +280,7 @@ public class playerController : MonoBehaviour {
 
 		RaycastHit hit;
 		if(Physics.Raycast(ray, out hit)){
-			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null)
+			if (hit.transform.gameObject.GetComponent<MonsterScript>() == null && hit.transform.gameObject.GetComponent<bossScript>() == null)
 			{
 				Vector3 pos = hit.point;
 				pos.y = transform.position.y + 1;
@@ -271,6 +302,7 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		isRooted();
 		_lastSinceFire += Time.deltaTime;
 		if (Input.GetAxis("Fire1") < 0.5 || _lastSinceFire > 0.5)
 			_firepressed = false;

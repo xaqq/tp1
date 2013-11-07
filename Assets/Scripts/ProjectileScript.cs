@@ -39,6 +39,11 @@ public class ProjectileScript : MonoBehaviour {
 		{
 			mob.hurt(Damage);
 		}
+		bossScript mob2 = collider.gameObject.GetComponent<bossScript>();
+		if (mob2 != null)
+		{
+			mob2.hurt(Damage);
+		}
 		if (collider.gameObject.GetComponent<playerController>() == null)
 			Destroy(gameObject);
 	}
