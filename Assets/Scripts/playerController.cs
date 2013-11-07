@@ -235,6 +235,7 @@ public class playerController : MonoBehaviour {
 				_curHp = _maxHp;
 			}
 			_curMp -= 20;
+				GameObject.Instantiate(Resources.Load("Prefabs/Effects/Heal"), transform.position, Quaternion.identity);
 			audio.PlayOneShot(_healSound);
 		}
 	}
@@ -258,6 +259,7 @@ public class playerController : MonoBehaviour {
 					return ;
 				}
 				pos.y -= 1;
+				GameObject.Instantiate(Resources.Load("Prefabs/Effects/Blink"), transform.position, Quaternion.identity);
 				transform.position = pos;
 				audio.PlayOneShot(_teleportSound);
 			}
