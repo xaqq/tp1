@@ -51,7 +51,15 @@ public class MonsterScript : MonoBehaviour {
 		{
 			_isDestroyed = true;
 			this.GetComponentInChildren<Animation>().animation.Stop();
-			this.GetComponentInChildren<Animation>().animation.CrossFade("die");
+			if (this.GetComponentInChildren<Animation>().animation["die"])
+			{
+				this.GetComponentInChildren<Animation>().animation.CrossFade("die");
+			}
+			else if (this.GetComponentInChildren<Animation>().animation["death1"])
+			{
+				print ("OLOL");
+				this.GetComponentInChildren<Animation>().animation.CrossFade("death1");
+			}
 		}
 	}
 	
