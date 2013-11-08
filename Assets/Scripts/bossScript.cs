@@ -8,7 +8,7 @@ public class bossScript : MonoBehaviour {
 	public int HealthPoints;
 	public int AttackRange;
 	public int Damage;
-	public int AttackSpeed;
+	public float AttackSpeed;
 	public int Speed;
 	public bool _isDestroyed = false;
 	private int _defSpeed;
@@ -67,7 +67,7 @@ public class bossScript : MonoBehaviour {
 		if (_hud)
 		{
 			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
-									transform.position.y + 5.85f,
+									transform.position.y + 8.85f,
 									transform.position.z + 0.3f);
     		_hud.transform.rotation = Camera.main.transform.rotation;
 		}
