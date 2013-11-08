@@ -41,7 +41,7 @@ public class playerController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		animation["attack01"].speed = 1.8f;
+		animation["attack01"].speed = 1.9f;
 		animation.CrossFade("idle");
 		_name = _life.GetComponentInChildren<UILabel>();
 		_name.text = PlayerPrefs.GetString("Pseudo");
