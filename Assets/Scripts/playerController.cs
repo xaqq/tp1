@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour {
 	public AudioClip _snareSound;
 	public AudioClip _attackSound;
 	public float speed_ = 4;
+	public float _maxTpRange = 30;
 	private float rootDuration;
 	private float lastSpeed;
 	public float rotationSpeed_ = 180;
@@ -41,6 +42,24 @@ public class playerController : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		if (Application.loadedLevel != 1)
+		{
+			if (PlayerPrefs.HasKey("maxHP"))
+			{
+			_maxHp = PlayerPrefs.GetFloat("maxHP");
+			_curHp = _maxHp;
+			}
+			if (PlayerPrefs.HasKey("maxMP"))
+			{
+			_maxMp = PlayerPrefs.GetFloat("maxMP");
+			_curMp = _maxMp;
+			}
+			
+			if (PlayerPrefs.HasKey("speed"))
+			{
+			speed_ = PlayerPrefs.GetFloat("speed");
+			}
+		}
 		animation["attack01"].speed = 1.9f;
 		animation.CrossFade("idle");
 		_name = _life.GetComponentInChildren<UILabel>();
@@ -287,10 +306,11 @@ public class playerController : MonoBehaviour {
 				Vector3 charpos = transform.position;
 				charpos.y += 1;
 				Ray newray = new Ray(charpos, pos - charpos);
-				if (Physics.Raycast(newray, out hit, (pos - charpos).magnitude))
+				if (Physics.Raycast(newray, out hit, (pos - charpos).magnitude) || (pos - charpos).magnitude > _maxTpRange)
 				{
 					return ;
 				}
+					_curMp -= 20;
 				pos.y -= 1;
 				GameObject.Instantiate(Resources.Load("Prefabs/Effects/Blink"), transform.position, Quaternion.identity);
 				transform.position = pos;
@@ -348,7 +368,6 @@ public class playerController : MonoBehaviour {
 		{
 			if (Input.GetKeyDown (KeyCode.Alpha3) && _curMp >= 20)
 			{
-					_curMp -= 20;
 					teleport();
 			}
 			else if (Input.GetKeyDown (KeyCode.Alpha2) && _curMp >= 30)
