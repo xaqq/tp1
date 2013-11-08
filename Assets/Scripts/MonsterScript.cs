@@ -6,6 +6,7 @@ public class MonsterScript : MonoBehaviour {
 	public AudioClip _hurtSound;
 	private int _maxHp;
 	public int HealthPoints;
+	public string _name;
 	public int AttackRange;
 	public int Damage;
 	public float AttackSpeed;
@@ -24,13 +25,13 @@ public class MonsterScript : MonoBehaviour {
 	//GUI
 	public GameObject _hud;
 	private UISlider _life;
-	private UILabel _name;
+	private UILabel _nameLabel;
 
 	// Use this for initialization
 	void Start () {
 		_life = _hud.GetComponentInChildren<UISlider>();
-		_name = _life.GetComponentInChildren<UILabel>();
-		_name.text = "Orc";
+		_nameLabel = _life.GetComponentInChildren<UILabel>();
+		_nameLabel.text = _name;
 		_maxHp = HealthPoints;
 		_defSpeed = Speed;
 				this.GetComponentInChildren<Animation>()["attack"].speed = 1.5f;
