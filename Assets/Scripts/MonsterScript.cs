@@ -76,7 +76,7 @@ public class MonsterScript : MonoBehaviour {
 		if (_hud)
 		{
 			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
-									transform.position.y + 1.85f,
+									transform.position.y + 5.85f,
 									transform.position.z + 0.3f);
     		_hud.transform.rotation = Camera.main.transform.rotation;
 		}
