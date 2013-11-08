@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class MonsterScript : MonoBehaviour {
-	private playerController _target = null;	
-	public AudioClip _hurtSound;
+	private playerController _target = null;
+	public float _height;
 	private int _maxHp;
 	public int HealthPoints;
 	public string _name;
@@ -46,7 +46,6 @@ public class MonsterScript : MonoBehaviour {
 	{
 		if (_isDestroyed)
 			return;
-		audio.PlayOneShot(_hurtSound);
 		HealthPoints -= damage;
 		if (HealthPoints <= 0)
 		{
@@ -58,8 +57,11 @@ public class MonsterScript : MonoBehaviour {
 			}
 			else if (this.GetComponentInChildren<Animation>().animation["death1"])
 			{
-				print ("OLOL");
 				this.GetComponentInChildren<Animation>().animation.CrossFade("death1");
+			}
+			else if (this.GetComponentInChildren<Animation>().animation["death2"])
+			{
+				this.GetComponentInChildren<Animation>().animation.CrossFade("death2");
 			}
 		}
 	}
@@ -76,7 +78,7 @@ public class MonsterScript : MonoBehaviour {
 		if (_hud)
 		{
 			_hud.transform.position = new Vector3(transform.position.x + 0.1f,
-									transform.position.y + 5.85f,
+									transform.position.y + _height,
 									transform.position.z + 0.3f);
     		_hud.transform.rotation = Camera.main.transform.rotation;
 		}
@@ -93,7 +95,14 @@ public class MonsterScript : MonoBehaviour {
 			this.GetComponentInChildren<Animation>().animation.CrossFade("run");
 		}
 		else{
-			this.GetComponentInChildren<Animation>().animation.CrossFade("stun");
+			if (this.GetComponentInChildren<Animation>().animation["stun"])
+			{
+				this.GetComponentInChildren<Animation>().animation.CrossFade("stun");
+			}
+			else if (this.GetComponentInChildren<Animation>().animation["idle"])
+			{
+				this.GetComponentInChildren<Animation>().animation.CrossFade("idle");
+			}
 		}
 	}
 	

@@ -71,7 +71,9 @@ public class playerController : MonoBehaviour {
 		_curHp -= damage;
 		audio.PlayOneShot(_attackSound);
 		if (_curHp <= 0)
-			Destroy(gameObject);
+		{
+			Application.LoadLevel(5);
+		}
 	}
 	
 	private void update_animation()
