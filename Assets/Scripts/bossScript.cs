@@ -18,14 +18,17 @@ public class bossScript : MonoBehaviour {
 	private bool _isAttackRecovery = false;
 	private float _recoveryTimer = 0.0f;
 	private float _speedRecoveryTimer = -1.0f;
-		private float rootCooldown_ = 10.0f;
+	private float rootCooldown_ = 10.0f;
 	private bool isRootOnCooldown_ = false;
+		public bool canCharge = false;
+	private float chargeCooldown = 0;
+	
 	
 	//GUI
 	public GameObject _hud;
 	private UISlider _life;
 	private UILabel _name;
-
+		
 	// Use this for initialization
 	void Start () {
 		_life = _hud.GetComponentInChildren<UISlider>();
@@ -89,6 +92,24 @@ public class bossScript : MonoBehaviour {
 	}
 	
 	
+	
+	
+	void try_charge()
+	{
+		if (canCharge)
+		{
+			if (chargeCooldown <= 0)
+			{
+				print ("Charging");
+				_speedRecoveryTimer += 3;
+				chargeCooldown = 5;
+				Speed *= 3;
+				this.GetComponentInChildren<Animation>().animation["pudge_run_haste"].speed = 3;
+			}
+		}
+	}
+	
+	
 	// Update is called once per frame
 	void Update () {
 						if (isRootOnCooldown_)
@@ -114,11 +135,15 @@ public class bossScript : MonoBehaviour {
 			return;
 		}		
 		
+		chargeCooldown -= Time.deltaTime;
 		if (_speedRecoveryTimer > 0)
 		{
 			_speedRecoveryTimer -= Time.deltaTime;
 			if (_speedRecoveryTimer < 0)
+			{
 				Speed = _defSpeed;
+				this.GetComponentInChildren<Animation>().animation["pudge_run_haste"].speed = 1;
+			}
 		}
 		
 		rigidbody.velocity = Vector3.zero;
@@ -134,6 +159,7 @@ public class bossScript : MonoBehaviour {
 		}
 		else if (_target != null)
 		{
+			try_charge();
 			Vector3 TargetPosition = _target.transform.position;
 			TargetPosition.y = transform.position.y;
 			transform.LookAt(TargetPosition);

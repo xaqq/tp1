@@ -21,7 +21,10 @@ public class MonsterScript : MonoBehaviour {
 	private bool _isAttackRecovery = false;
 	private float _recoveryTimer = 0.0f;
 	private float _speedRecoveryTimer = -1.0f;
-
+	public bool canCharge = false;
+	private float chargeCooldown = 0;
+	
+	
 	//GUI
 	public GameObject _hud;
 	private UISlider _life;
@@ -55,13 +58,9 @@ public class MonsterScript : MonoBehaviour {
 			{
 				this.GetComponentInChildren<Animation>().animation.CrossFade("die");
 			}
-			else if (this.GetComponentInChildren<Animation>().animation["death1"])
+			else if (this.GetComponentInChildren<Animation>().animation["taunt"])
 			{
-				this.GetComponentInChildren<Animation>().animation.CrossFade("death1");
-			}
-			else if (this.GetComponentInChildren<Animation>().animation["death2"])
-			{
-				this.GetComponentInChildren<Animation>().animation.CrossFade("death2");
+				this.GetComponentInChildren<Animation>().animation.CrossFade("taunt");
 			}
 		}
 	}
@@ -107,13 +106,29 @@ public class MonsterScript : MonoBehaviour {
 	}
 	
 	
+	void try_charge()
+	{
+		if (canCharge)
+		{
+			if (chargeCooldown <= 0)
+			{
+				print ("Charging");
+				_speedRecoveryTimer += 3;
+				chargeCooldown = 5;
+				Speed *= 3;
+				this.GetComponentInChildren<Animation>().animation["run"].speed = 3;
+			}
+		}
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		
 		UpdateLife();
 		if (_isDestroyed)
 		{
-			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("die"))
+			if (this.GetComponentInChildren<Animation>().animation.IsPlaying("die") ||
+				 this.GetComponentInChildren<Animation>().animation.IsPlaying("taunt"))
 			{
 				return;
 			}
@@ -122,13 +137,17 @@ public class MonsterScript : MonoBehaviour {
 			Destroy(gameObject);
 			PlayerPrefs.SetInt ("NbMonstre", PlayerPrefs.GetInt("NbMonstre") + 1);
 			return;
-		}		
+		}	
 		
+		chargeCooldown -= Time.deltaTime;
 		if (_speedRecoveryTimer > 0)
 		{
 			_speedRecoveryTimer -= Time.deltaTime;
 			if (_speedRecoveryTimer < 0)
+			{
 				Speed = _defSpeed;
+				this.GetComponentInChildren<Animation>().animation["run"].speed = 1;
+			}
 		}
 		
 		rigidbody.velocity = Vector3.zero;
@@ -143,7 +162,8 @@ public class MonsterScript : MonoBehaviour {
 			}
 		}
 		else if (_target != null)
-		{
+		{					
+			try_charge();
 			Vector3 TargetPosition = _target.transform.position;
 			TargetPosition.y = transform.position.y;
 			transform.LookAt(TargetPosition);
