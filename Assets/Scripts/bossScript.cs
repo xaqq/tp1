@@ -102,7 +102,7 @@ public class bossScript : MonoBehaviour {
 			{
 				print ("Charging");
 				_speedRecoveryTimer += 3;
-				chargeCooldown = 5;
+				chargeCooldown = Random.Range(7, 15);
 				Speed *= 3;
 				this.GetComponentInChildren<Animation>().animation["pudge_run_haste"].speed = 3;
 			}
