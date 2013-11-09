@@ -34,11 +34,9 @@ public class playerController : MonoBehaviour {
 	private float _lastSinceFire = 0.0f;
 	public GameObject TPSCamera;
 	public GameObject FPSCamera;
+	public GameObject _rooted;
 	private bool _isTPS = true;
 	private bool _isCReleased = true;
-	void Awake() {
-		PlayerPrefs.SetInt("NbMonstre", 0);
-	}
 	
 	// Use this for initialization
 	void Start () {
@@ -59,6 +57,7 @@ public class playerController : MonoBehaviour {
 			{
 			speed_ = PlayerPrefs.GetFloat("speed");
 			}
+			PlayerPrefs.SetInt("NbMonstre", 0);
 		}
 		animation["attack01"].speed = 1.9f;
 		animation.CrossFade("idle");
@@ -324,6 +323,14 @@ public class playerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (speed_ < 0.1f)
+		{
+			_rooted.SetActive(true);
+		}
+		else
+		{
+			_rooted.SetActive(false);
+		}
 		if (Input.GetKeyUp(KeyCode.C))
 		{
 			_isCReleased = true;

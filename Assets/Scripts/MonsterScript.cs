@@ -112,7 +112,6 @@ public class MonsterScript : MonoBehaviour {
 		{
 			if (chargeCooldown <= 0)
 			{
-				print ("Charging");
 				_speedRecoveryTimer += 3;
 				chargeCooldown = 5;
 				Speed *= 3;
